@@ -28,3 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__.'/auth.php';
+
+
+
+route::middleware('auth')->name('chat.')->namespace('Chat')->group(function(){
+//parameter (user_id) is for recever user part AND the the sender user is Auth::user()
+    route::get('chat/{user_id}','ChatController@chatForm')->name('form'); 
+    route::post('chat/{user_id}','ChatController@sendMessage')->name('send'); 
+});
